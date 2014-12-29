@@ -8,3 +8,41 @@
 <div>
   <%= @television_show.synopsis %>
 </div>
+
+<div>
+  <% @television_show.characters.each do |character| %>
+    <%= character.name %>
+    <%= character.actor %>
+    <%= character.description %>
+  <% end %>
+</div>
+
+<%= form_for @character, url: television_show_characters_path(@television_show) do |f| %>
+
+  <% if @character.errors.any? %>
+    <ul>
+      <% @character.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :actor %>
+    <%= f.text_field :actor %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <%= f.hidden_field :television_show_id, :value => @television_show.id %>
+  <div>
+    <%= f.submit "Submit" %>
+
+  </div>
+<% end %>

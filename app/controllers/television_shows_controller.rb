@@ -5,6 +5,7 @@ class TelevisionShowsController < ApplicationController
 
   def show
     @television_show = TelevisionShow.find(params[:id])
+    @character = Character.new
   end
 
   def new
@@ -16,7 +17,7 @@ class TelevisionShowsController < ApplicationController
 
     if @television_show.save
       flash[:notice] = "Success!"
-      redirect_to '/television_shows'
+      redirect_to television_show_path(@television_show)
     else
       flash.now[:notice] = "Your movie couldn't be saved."
       render :new

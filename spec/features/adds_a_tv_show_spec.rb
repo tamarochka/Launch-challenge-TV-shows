@@ -30,7 +30,7 @@ feature 'user adds a new TV show', %Q{
 
     expect(page).to have_content 'Success'
     expect(page).to have_content show.title
-    expect(page).to_not have_content show.synopsis
+    
   end
 
   scenario 'without required attributes' do

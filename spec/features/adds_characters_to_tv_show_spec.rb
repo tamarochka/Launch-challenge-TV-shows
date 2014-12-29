@@ -18,26 +18,29 @@ So that other people can enjoy their crazy antics
   scenario 'user adds new characters' do
     attrs = {
       name: 'Name_character',
-      actors_name: 'actor',
+      actor: 'actor',
       description: 'blah-blah-blah'
 
     }
+    show = TelevisionShow.create(title: 'Movies',network: 'Disney' )
 
-    chracter = Character.new(attrs)
+    character = Character.new(attrs)
 
-    visit '/television_shows/new'
+    visit "/television_shows/#{show.id}"
     fill_in 'Name', with: character.name
-    fill_in 'Actors Name', with: character.actors_name
+    fill_in 'Actor', with: character.actor
     fill_in 'Description', with: character.description
     click_on 'Submit'
 
     expect(page).to have_content 'Character Successfully added'
-    expect(page).to have_content character.actors_name
-    expect(page).to_not have_content character.description
+    expect(page).to have_content character.name
+    expect(page).to have_content character.actor
+    expect(page).to have_content character.description
   end
 
   scenario 'without required attributes' do
-    visit '/television_shows/new'
+    show = TelevisionShow.create(title: 'Movies',network: 'Disney' )
+    visit "/television_shows/#{show.id}"
     click_on 'Submit'
 
     expect(page).to_not have_content 'Success'
@@ -47,12 +50,13 @@ So that other people can enjoy their crazy antics
   scenario 'user cannot add character that already exists' do
     attrs = {
       name: 'Name_character',
-      actors_name: 'actor'
+      actor: 'actor'
     }
-
+show = TelevisionShow.create(title: 'Movies',
+  network: 'Disney' )
     character = Character.create(attrs)
 
-    visit '/television_shows/new'
+    visit "/television_shows/#{show.id}"
     fill_in 'Name', with: character.name
     fill_in 'Actor', with: character.actor
     click_on 'Submit'
