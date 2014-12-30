@@ -1,0 +1,15 @@
+<h3><%=TelevisionShow.find(params[:id]).title%></h3>
+
+<ul>
+  <% @characters.each do |character| %>
+    <li>
+      <%= character.name %>
+    </li>
+    <li>
+      <%= character.actor %>
+    </li>
+    <li>
+      <%= character.description %>
+    </li>
+  <% end %>
+</ul>

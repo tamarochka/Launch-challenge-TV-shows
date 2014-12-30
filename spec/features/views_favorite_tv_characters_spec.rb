@@ -15,8 +15,8 @@ So I can find wonky characters to watch
   scenario "user views favorite TV characters page" do
     show = TelevisionShow.create(title: 'Movies', network: 'Disney')
     characters = []
-    character_attrs=[{name: "First", actor: "actor1"},
-      {name: "Second", actor: "actor2"}]
+    character_attrs=[{name: "First", actor: "actor1", television_show_id: show.id},
+      {name: "Second", actor: "actor2", television_show_id: show.id}]
 
     character_attrs.each do |attrs|
     characters << Character.create(attrs)
@@ -26,7 +26,7 @@ So I can find wonky characters to watch
   visit "/television_shows/#{show.id}"
   characters.each do |character|
     expect(page).to have_content character.name
-    expect(page).to have_content character.television_show.title
+    expect(page).to have_content show.title
   end
 end
 end
