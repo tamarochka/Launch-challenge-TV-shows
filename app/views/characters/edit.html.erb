@@ -1,0 +1,29 @@
+<p><%= notice %></p>
+<%= form_for [@television_show, @character] do |f| %>
+
+  <% if @character.errors.any? %>
+<ul>
+  <% @character.errors.full_messages.each do |msg| %>
+  <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :actor %>
+    <%= f.text_field :actor %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <%= f.hidden_field :television_show_id, :value => @character.television_show_id %>
+  <div>
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>

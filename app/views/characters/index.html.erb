@@ -3,13 +3,7 @@
 <ul>
   <% @characters.each do |character| %>
     <li>
-      <%= character.name %>
-    </li>
-    <li>
-      <%= character.actor %>
-    </li>
-    <li>
-      <%= character.description %>
+        <%= " Character: #{character.name} Actor: #{character.actor} Description: #{character.description} " %>
     </li>
   <% end %>
 </ul>

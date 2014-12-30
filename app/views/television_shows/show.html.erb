@@ -11,8 +11,9 @@
 
 <div>
   <% @television_show.characters.each do |character| %>
-    <%= character.name %>
-    <%= character.actor %>
-    <%= character.description %></br>
+      <%= " Character: #{character.name} Actor: #{character.actor} Description: #{character.description} " %>
+    <li><%= link_to "Edit", edit_character_path(character) %></li>
+            <li><%= link_to 'Delete', character, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    </br>
   <% end %>
 </div>

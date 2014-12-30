@@ -30,7 +30,7 @@ feature 'user adds a new TV show', %Q{
 
     expect(page).to have_content 'Success'
     expect(page).to have_content show.title
-    
+
   end
 
   scenario 'without required attributes' do
@@ -46,7 +46,6 @@ feature 'user adds a new TV show', %Q{
       title: 'Game of Thrones',
       network: 'HBO'
     }
-
     show = TelevisionShow.create(attrs)
 
     visit '/television_shows/new'
