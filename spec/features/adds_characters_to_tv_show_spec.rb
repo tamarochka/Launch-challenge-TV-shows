@@ -38,30 +38,32 @@ So that other people can enjoy their crazy antics
     expect(page).to have_content character.description
   end
 
-  # scenario 'without required attributes' do
-  #   show = TelevisionShow.create(title: 'Movies',network: 'Disney' )
-  #   visit "/television_shows/#{show.id}/characters/new"
-  #   click_on 'Submit'
-  #
-  #   expect(page).to_not have_content 'Success'
-  #   expect(page).to have_content "can't be blank"
-  # end
+  scenario 'without required attributes' do
+    show = TelevisionShow.create(title: 'Movies',network: 'Disney' )
+    visit "/television_shows/#{show.id}/characters/new"
+    click_on 'Submit'
 
-#   scenario 'user cannot add character that already exists' do
-#     attrs = {
-#       name: 'Name_character',
-#       actor: 'actor'
-#     }
-# show = TelevisionShow.create(title: 'Movies',
-#   network: 'Disney' )
-#     character = Character.new(attrs)
-#
-#     visit "/television_shows/#{show.id}/characters/new"
-#     fill_in 'Name', with: character.name
-#     fill_in 'Actor', with: character.actor
-#     click_on 'Submit'
-#
-#     expect(page).to_not have_content 'Success'
-#     expect(page).to have_content "has already been taken"
-#   end
+    expect(page).to_not have_content 'Success'
+    expect(page).to have_content "can't be blank"
+  end
+
+  scenario 'user cannot add character that already exists' do
+    show = TelevisionShow.create(title: 'Movies',
+      network: 'Disney' )
+    attrs = {
+      name: 'Name_character',
+      actor: 'actor',
+      television_show_id: show.id
+    }
+
+    character = Character.create(attrs)
+
+    visit "/television_shows/#{show.id}/characters/new"
+    fill_in 'Name', with: character.name
+    fill_in 'Actor', with: character.actor
+    click_on 'Submit'
+
+    expect(page).to_not have_content 'Success'
+    expect(page).to have_content "has already been taken"
+  end
 end

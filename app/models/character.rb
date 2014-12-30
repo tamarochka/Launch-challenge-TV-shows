@@ -1,8 +1,5 @@
 class Character < ActiveRecord::Base
   belongs_to :television_show
-  validates :name,
-    presence: true,
-    uniqueness: { scope: :television_show_id }
-  validates :actor,
-    presence: true
+  validates :name, presence: true, uniqueness: { scope: :television_show_id }
+  validates :actor, presence: true
 end

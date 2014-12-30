@@ -22,6 +22,7 @@ class CharactersController < ApplicationController
       redirect_to "/television_shows/#{params[:television_show_id]}/characters"
     else
       flash.now[:notice] = "Your character couldn't be saved."
+      render :new
     end
   end
 

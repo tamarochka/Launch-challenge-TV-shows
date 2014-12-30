@@ -1,12 +1,13 @@
+<p><%= notice %></p>
 <%= form_for [:television_show, @character] do |f| %>
 
   <% if @character.errors.any? %>
-    <ul>
-      <% @character.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
+<ul>
+  <% @character.errors.full_messages.each do |msg| %>
+  <li><%= msg %></li>
   <% end %>
+</ul>
+<% end %>
 
   <div>
     <%= f.label :name %>
